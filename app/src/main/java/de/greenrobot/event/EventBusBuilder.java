@@ -27,9 +27,9 @@ public class EventBusBuilder {
     private final static ExecutorService DEFAULT_EXECUTOR_SERVICE = Executors.newCachedThreadPool();
 
     boolean logSubscriberExceptions = true;//监听异常日志
-    boolean logNoSubscriberMessages = true;
+    boolean logNoSubscriberMessages = true; //如果没有订阅者,显示一个Log
     boolean sendSubscriberExceptionEvent = true; //发送监听到异常事件
-    boolean sendNoSubscriberEvent = true;
+    boolean sendNoSubscriberEvent = true; //如果没有订阅者,发送一条默认事件
     boolean throwSubscriberException; //如果失败则抛出异常
     boolean eventInheritance = true; //event的子类是否也能响应订阅者
     ExecutorService executorService = DEFAULT_EXECUTOR_SERVICE;

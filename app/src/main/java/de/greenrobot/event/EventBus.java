@@ -71,7 +71,6 @@ public class EventBus {
                 }
             };
 
-
     private final HandlerPoster mainThreadPoster; //前台发送者
     private final BackgroundPoster backgroundPoster; //后台发送者
     private final AsyncPoster asyncPoster;   //后台发送者(只让队列第一个待订阅者去响应)
@@ -184,7 +183,8 @@ public class EventBus {
         Class<?> eventType = subscriberMethod.eventType;
         Subscription newSubscription = new Subscription(subscriber, subscriberMethod, priority);
         //通过响应事件作为key,并取得这个事件类型将会响应的全部订阅者
-        //没有订阅者会订阅一个事件,多个订阅者可能订阅同一个事件
+        //没个订阅者至少会订阅一个事件,多个订阅者可能订阅同一个事件(多对多)
+        //key:订阅的事件,value:订阅这个事件的所有订阅者集合
         CopyOnWriteArrayList<Subscription> subscriptions = subscriptionsByEventType.get(eventType);
         if (subscriptions == null) {
             subscriptions = new CopyOnWriteArrayList<Subscription>();

@@ -25,7 +25,7 @@ final class HandlerPoster extends Handler {
     private final PendingPostQueue queue;
     private final int maxMillisInsideHandleMessage;
     private final EventBus eventBus;
-    private boolean handlerActive; //用于标识当前queue中是否有待发送对象
+    private boolean handlerActive; //用于标识当前queue中是否有正在发送对象的任务
 
     HandlerPoster(EventBus eventBus, Looper looper, int maxMillisInsideHandleMessage) {
         super(looper);
