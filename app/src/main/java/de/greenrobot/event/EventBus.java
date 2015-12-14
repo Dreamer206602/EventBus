@@ -178,10 +178,10 @@ public class EventBus {
      * @param priority         优先级
      */
     private void subscribe(Object subscriber, SubscriberMethod subscriberMethod, boolean sticky,
-                           int priority) {
-        //根据传入的响应方法名获取到响应事件(参数类型)
-        Class<?> eventType = subscriberMethod.eventType;
-        Subscription newSubscription = new Subscription(subscriber, subscriberMethod, priority);
+        int priority) {
+            //根据传入的响应方法名获取到响应事件(参数类型)
+            Class<?> eventType = subscriberMethod.eventType;
+            Subscription newSubscription = new Subscription(subscriber, subscriberMethod, priority);
         //通过响应事件作为key,并取得这个事件类型将会响应的全部订阅者
         //没个订阅者至少会订阅一个事件,多个订阅者可能订阅同一个事件(多对多)
         //key:订阅的事件,value:订阅这个事件的所有订阅者集合
@@ -534,13 +534,13 @@ public class EventBus {
      * 将参数eventClass的所有父类,父类的接口,父类接口的父类,全部添加到eventTypesCache集合中
      */
     private List<Class<?>> lookupAllEventTypes(Class<?> eventClass) {
-        synchronized (eventTypesCache) {
-            List<Class<?>> eventTypes = eventTypesCache.get(eventClass);
-            if (eventTypes == null) {
-                eventTypes = new ArrayList<Class<?>>();
-                Class<?> clazz = eventClass;
+                synchronized (eventTypesCache) {
+                    List<Class<?>> eventTypes = eventTypesCache.get(eventClass);
+                    if (eventTypes == null) {
+                        eventTypes = new ArrayList<Class<?>>();
+                        Class<?> clazz = eventClass;
 
-                //通过循环,将父类,父类的接口,父类接口的父类,全部添加到eventTypes集合中
+                        //通过循环,将父类,父类的接口,父类接口的父类,全部添加到eventTypes集合中
                 while (clazz != null) {
                     eventTypes.add(clazz);
                     addInterfaces(eventTypes, clazz.getInterfaces());
@@ -636,8 +636,9 @@ public class EventBus {
      * 事件发送过程所需数据的封装
      */
     final static class PostingThreadState {
-        final List<Object> eventQueue = new ArrayList<Object>();
-        boolean isPosting;
+        //通过post方法参数传入的事件集合
+        final List<Object> eventQueue = new ArrayList<Object>(); 
+        boolean isPosting; //是否正在执行postSingleEvent()方法
         boolean isMainThread;
         Subscription subscription;
         Object event;
