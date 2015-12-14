@@ -4,6 +4,8 @@
 
 仅作为笔记记录下来.
 
-EventBus 源码研读：[http://kymjs.com/code/2015/12/12/01/](http://kymjs.com/code/2015/12/12/01/)  
-
+EventBus 源码研读(上)：[http://kymjs.com/code/2015/12/12/01/](http://kymjs.com/code/2015/12/12/01/)  
+EventBus 源码研读(中)：[http://kymjs.com/code/2015/12/13/01/](http://kymjs.com/code/2015/12/13/01/)   
+  
+  
 -----张涛   [http://www.kymjs.com](http://www.kymjs.com)
